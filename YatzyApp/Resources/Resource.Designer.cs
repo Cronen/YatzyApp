@@ -63,14 +63,17 @@ namespace YatzyApp
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050000
-			public const int MyButton = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int MyButton = 2131099648;
 			
-			// aapt resource value: 0x7f050001
-			public const int Result = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int Result = 2131099649;
 			
-			// aapt resource value: 0x7f050002
-			public const int image = 2131034114;
+			// aapt resource value: 0x7f060003
+			public const int gachiVid = 2131099651;
+			
+			// aapt resource value: 0x7f060002
+			public const int image = 2131099650;
 			
 			static Id()
 			{
@@ -98,17 +101,33 @@ namespace YatzyApp
 			}
 		}
 		
-		public partial class String
+		public partial class Raw
 		{
 			
 			// aapt resource value: 0x7f040000
-			public const int app_name = 2130968576;
+			public const int gachibass = 2130968576;
 			
-			// aapt resource value: 0x7f040001
-			public const int button = 2130968577;
+			static Raw()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
 			
-			// aapt resource value: 0x7f040002
-			public const int resultClicks = 2130968578;
+			private Raw()
+			{
+			}
+		}
+		
+		public partial class String
+		{
+			
+			// aapt resource value: 0x7f050000
+			public const int app_name = 2131034112;
+			
+			// aapt resource value: 0x7f050001
+			public const int button = 2131034113;
+			
+			// aapt resource value: 0x7f050002
+			public const int resultClicks = 2131034114;
 			
 			static String()
 			{

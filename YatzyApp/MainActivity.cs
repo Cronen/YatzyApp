@@ -1,6 +1,7 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using Android.Views;
 using YatzyApp.Classes;
 
 namespace YatzyApp
@@ -17,9 +18,17 @@ namespace YatzyApp
             SetContentView(Resource.Layout.Main);
             Button button = FindViewById<Button>(Resource.Id.MyButton);
             var label = FindViewById<TextView>(Resource.Id.Result);
-
+            var video = FindViewById<VideoView>(Resource.Id.gachiVid);
+            string vidpath = string.Format("android.resource://{0}/{1}", Application.PackageName, Resource.Raw.gachibass);
+            video.SetOnPreparedListener(new VideoLooper());
+            video.Visibility = ViewStates.Gone;
             button.Click += delegate
             {
+                video.SetVideoPath(vidpath);
+                video.Start();
+                FindViewById<ImageView>(Resource.Id.image).Visibility = ViewStates.Gone;
+                video.Visibility = ViewStates.Visible;
+
                 label.Text = "You rolled";
                 foreach (Dice d in diceH.RollDices())
                 {
