@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="app_name">YatzyApp</string>
+  <string name="button">Roll dice</string>
+  <string name="resultClicks"></string>
+
+</resources>
