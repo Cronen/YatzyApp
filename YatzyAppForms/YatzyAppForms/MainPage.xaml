@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:YatzyAppForms"
+             x:Class="YatzyAppForms.MainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Dice" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderRadius" Value="1"/>
+                <Setter Property="FontSize" Value="24" />
+                <Setter Property="Margin" Value="4" />
+                <Setter Property="BorderWidth" Value="3" />
+            </Style>
+            <Style x:Key="RollBtn" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="DarkGray"/>
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderColor" Value="Black"/>
+                <Setter Property="BorderRadius" Value="1"/>
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Margin" Value="5" />
+                <Setter Property="BorderWidth" Value="3" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <Grid BackgroundColor="LightGray" Padding="5,0" RowSpacing="1" ColumnSpacing="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="Dice0" Text="0" Grid.Row="1" Grid.Column="0" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+        <Button x:Name="Dice1" Text="0" Grid.Row="1" Grid.Column="1" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+        <Button x:Name="Dice2" Text="0" Grid.Row="1" Grid.Column="2" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+        <Button x:Name="Dice3" Text="0" Grid.Row="1" Grid.Column="3" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+        <Button x:Name="Dice4" Text="0" Grid.Row="1" Grid.Column="4" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+
+        <Button x:Name="rollBtn" Text="Roll Dice" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Clicked="OnRoll" Style="{StaticResource RollBtn}"/>
+    </Grid>
+
+</ContentPage>
