@@ -11,8 +11,9 @@
                 <Setter Property="BorderColor" Value="Black"/>
                 <Setter Property="BorderRadius" Value="1"/>
                 <Setter Property="FontSize" Value="24" />
-                <Setter Property="Margin" Value="4" />
+                <Setter Property="Margin" Value="0" />
                 <Setter Property="BorderWidth" Value="3" />
+                <Setter Property="HeightRequest" Value="35" />
             </Style>
             <Style x:Key="RollBtn" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="DarkGray"/>
@@ -25,8 +26,19 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
-    <Grid BackgroundColor="LightGray" Padding="5,0" RowSpacing="1" ColumnSpacing="1">
+    <StackLayout>
+        <Button x:Name="rollBtn" Text="Roll Dice" Clicked="OnRoll" Style="{StaticResource RollBtn}" VerticalOptions="Start"/>
+        <ListView x:Name="diceView" ItemTapped="diceView_ItemTapped" VerticalOptions="StartAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="45">
+                        <Button Text="{Binding CurrentValue}" Style="{StaticResource Dice}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+    <!--<Grid BackgroundColor="LightGray" Padding="5,0" RowSpacing="1" ColumnSpacing="1">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*" />
@@ -42,13 +54,21 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="Dice0" Text="0" Grid.Row="1" Grid.Column="0" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+        --><!--<Button x:Name="Dice0" Text="0" Grid.Row="1" Grid.Column="0" Clicked="HoldDice" Style="{StaticResource Dice}"/>
         <Button x:Name="Dice1" Text="0" Grid.Row="1" Grid.Column="1" Clicked="HoldDice" Style="{StaticResource Dice}"/>
         <Button x:Name="Dice2" Text="0" Grid.Row="1" Grid.Column="2" Clicked="HoldDice" Style="{StaticResource Dice}"/>
         <Button x:Name="Dice3" Text="0" Grid.Row="1" Grid.Column="3" Clicked="HoldDice" Style="{StaticResource Dice}"/>
-        <Button x:Name="Dice4" Text="0" Grid.Row="1" Grid.Column="4" Clicked="HoldDice" Style="{StaticResource Dice}"/>
+        <Button x:Name="Dice4" Text="0" Grid.Row="1" Grid.Column="4" Clicked="HoldDice" Style="{StaticResource Dice}"/>--><!--
 
+        <ListView x:Name="diceView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="{Binding CurrentValue}" Style="{StaticResource Dice}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <Button x:Name="rollBtn" Text="Roll Dice" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Clicked="OnRoll" Style="{StaticResource RollBtn}"/>
-    </Grid>
-
+    </Grid>-->
 </ContentPage>

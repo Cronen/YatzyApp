@@ -22,12 +22,28 @@ namespace YatzyAppForms.Classes
             Held = false;
             CurrentValue = 0;
         }
-
+        public Dice(Random RND)
+        {
+            rnd = RND;
+            Held = false;
+            CurrentValue = 0;
+        }
         public void Roll()
         {
             //Random.next includes min value, but not max value. Therefore +1 on the max value. 
             CurrentValue = rnd.Next(MinValue, MaxValue + 1);
-            dice.Text =  CurrentValue.ToString();
+            //dice.Text =  CurrentValue.ToString();
+        }
+        public void Hold()
+        {
+            if (Held)
+            {
+                Held = false;
+            }
+            else
+            {
+                Held = true;
+            }
         }
     }
 }

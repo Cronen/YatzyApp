@@ -11,20 +11,30 @@ namespace YatzyAppForms
     public partial class MainPage : ContentPage
     {
         DiceHandler DH;
-
         public MainPage()
         {
             InitializeComponent();
-            DH = new DiceHandler(this.Dice0, this.Dice1, this.Dice2, this.Dice3, this.Dice4);
+            DH = new DiceHandler();
+            UpdateListview();
         }
         void OnRoll(object sender, EventArgs e)
         {
             DH.RollDices();
+            UpdateListview();
         }
-        void HoldDice(object sender, EventArgs e)
+        private void diceView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            Button DiceBtn = (Button)sender;
-            int index = DiceBtn.Id;
+            Dice d = (Dice)e.Item;
+            d.Hold();
+            d.CurrentValue = 9;
+            Button btn = (Button)sender;
+            btn.BackgroundColor = Color.Red;
+            UpdateListview();
+        }
+        private void UpdateListview()
+        {
+            diceView.ItemsSource = null;
+            diceView.ItemsSource = DH.DiceList;
         }
     }
 }
