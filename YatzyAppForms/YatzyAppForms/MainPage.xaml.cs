@@ -15,26 +15,63 @@ namespace YatzyAppForms
         {
             InitializeComponent();
             DH = new DiceHandler();
-            UpdateListview();
+            GenerateDices();
+            GenerateScoreBoard();
         }
-        void OnRoll(object sender, EventArgs e)
+        private void GenerateDices()
         {
-            DH.RollDices();
-            UpdateListview();
+            int counter = 0;
+            foreach (Dice d in DH.DiceList)
+            {
+                gr_dice.Children.Add(GenerateDiceBtn(d), counter, 0);
+                counter++;
+            }
         }
-        private void diceView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private void OnRoll(object sender, EventArgs e)
         {
-            Dice d = (Dice)e.Item;
+            try
+            {
+                DH.RollDices();
+                gr_dice.Children.Clear();
+                GenerateDices();
+                lb_Rolls.Text = string.Format("Rolls {0}/3", DH.Rolls);
+            }
+            catch (Exception ex)
+            {
+                DisplayAlert("Alert", ex.Message, "OK");
+            }
+        
+        }
+        private Button GenerateDiceBtn(Dice d)
+        {
+            var btn = new Button();
+            btn.Style = (Style)Application.Current.Resources["Dice"];
+            btn.Text = d.CurrentValue.ToString();
+            btn.BackgroundColor = d.GetBgColor();
+            btn.Clicked += (sender, args) => HoldDice(d, btn);
+            return btn;
+        }
+
+        private void HoldDice(Dice d, Button btn)
+        {
             d.Hold();
-            d.CurrentValue = 9;
-            Button btn = (Button)sender;
-            btn.BackgroundColor = Color.Red;
-            UpdateListview();
+            btn.BackgroundColor = d.GetBgColor();
         }
-        private void UpdateListview()
+
+        private void GenerateScoreBoard()
         {
-            diceView.ItemsSource = null;
-            diceView.ItemsSource = DH.DiceList;
+            for (int i = 0; i < 10; i++)
+            {
+                var lb = new Label();
+                lb.Text = i + " Pair";
+                lb.Style = (Style)Application.Current.Resources["TextNorm"];
+                lb.HorizontalTextAlignment = TextAlignment.Center;
+                var btn = new Button();
+                btn.Text = i.ToString();
+                btn.HorizontalOptions = LayoutOptions.Center;
+                gr_ScoreBoard.Children.Add(lb, 0, i);
+                gr_ScoreBoard.Children.Add(btn, 1, i);
+            }
         }
     }
 }

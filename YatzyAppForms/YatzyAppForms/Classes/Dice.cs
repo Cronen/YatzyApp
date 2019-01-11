@@ -6,22 +6,13 @@ using Xamarin.Forms;
 
 namespace YatzyAppForms.Classes
 {
-    class Dice
+    public class Dice
     {
-        Button dice;
-        private int MinValue = 1;
-        private int MaxValue = 6;
+        private readonly int MinValue = 1;
+        private readonly int MaxValue = 6;
         private Random rnd;
         public bool Held { get; set; }
         public int CurrentValue { get; set; }
-
-        public Dice(Random RND, Button d)
-        {
-            dice = d;
-            rnd = RND;
-            Held = false;
-            CurrentValue = 0;
-        }
         public Dice(Random RND)
         {
             rnd = RND;
@@ -32,7 +23,6 @@ namespace YatzyAppForms.Classes
         {
             //Random.next includes min value, but not max value. Therefore +1 on the max value. 
             CurrentValue = rnd.Next(MinValue, MaxValue + 1);
-            //dice.Text =  CurrentValue.ToString();
         }
         public void Hold()
         {
@@ -44,6 +34,16 @@ namespace YatzyAppForms.Classes
             {
                 Held = true;
             }
+        }
+        public Color bgColor { get => GetBgColor(); set { } }
+        public Color GetBgColor()
+        {
+            var reColor = Color.Red;
+            if (Held)
+                reColor = Color.DarkGreen;
+            else
+                reColor = Color.White;
+            return reColor;
         }
     }
 }

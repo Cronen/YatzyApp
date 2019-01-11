@@ -3,72 +3,47 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:YatzyAppForms"
              x:Class="YatzyAppForms.MainPage">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="Dice" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="White"/>
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BorderColor" Value="Black"/>
-                <Setter Property="BorderRadius" Value="1"/>
-                <Setter Property="FontSize" Value="24" />
-                <Setter Property="Margin" Value="0" />
-                <Setter Property="BorderWidth" Value="3" />
-                <Setter Property="HeightRequest" Value="35" />
-            </Style>
-            <Style x:Key="RollBtn" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="DarkGray"/>
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="BorderColor" Value="Black"/>
-                <Setter Property="BorderRadius" Value="1"/>
-                <Setter Property="FontSize" Value="16" />
-                <Setter Property="Margin" Value="5" />
-                <Setter Property="BorderWidth" Value="3" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <StackLayout>
-        <Button x:Name="rollBtn" Text="Roll Dice" Clicked="OnRoll" Style="{StaticResource RollBtn}" VerticalOptions="Start"/>
-        <ListView x:Name="diceView" ItemTapped="diceView_ItemTapped" VerticalOptions="StartAndExpand">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell Height="45">
-                        <Button Text="{Binding CurrentValue}" Style="{StaticResource Dice}"/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+    <StackLayout BackgroundColor="LightGray">
+        <Label x:Name="HL" Text="Yatzy Game!" FontSize="26" TextColor="Black" Margin="10,10,10,0"/>
+        <StackLayout>
+            <Grid x:Name="gr_dice" Padding="5,0" RowSpacing="1" ColumnSpacing="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            </Grid>
+        </StackLayout>
+        <StackLayout>
+            <Grid x:Name="gr_Controls" Padding="5,0" RowSpacing="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Button x:Name="rollBtn" Grid.Column="0" Grid.Row="0" Text="Roll Dice" Clicked="OnRoll" Style="{StaticResource RollBtn}" VerticalOptions="Start"/>
+                <Label x:Name="lb_Rolls" Grid.Column="1" Grid.Row="0" Text="Rolls 0/3" Style="{StaticResource TextNorm}" HorizontalTextAlignment="Center"/>
+            </Grid>
+        </StackLayout>
+        <StackLayout BackgroundColor="Gray" HeightRequest="225" VerticalOptions="StartAndExpand">
+            <ScrollView x:Name="ScoreBoard">
+                <Grid x:Name="gr_ScoreBoard" Padding="5,0" RowSpacing="0" ColumnSpacing="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
     </StackLayout>
-    <!--<Grid BackgroundColor="LightGray" Padding="5,0" RowSpacing="1" ColumnSpacing="1">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="2*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-
-        --><!--<Button x:Name="Dice0" Text="0" Grid.Row="1" Grid.Column="0" Clicked="HoldDice" Style="{StaticResource Dice}"/>
-        <Button x:Name="Dice1" Text="0" Grid.Row="1" Grid.Column="1" Clicked="HoldDice" Style="{StaticResource Dice}"/>
-        <Button x:Name="Dice2" Text="0" Grid.Row="1" Grid.Column="2" Clicked="HoldDice" Style="{StaticResource Dice}"/>
-        <Button x:Name="Dice3" Text="0" Grid.Row="1" Grid.Column="3" Clicked="HoldDice" Style="{StaticResource Dice}"/>
-        <Button x:Name="Dice4" Text="0" Grid.Row="1" Grid.Column="4" Clicked="HoldDice" Style="{StaticResource Dice}"/>--><!--
-
-        <ListView x:Name="diceView" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Label Text="{Binding CurrentValue}" Style="{StaticResource Dice}"/>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        <Button x:Name="rollBtn" Text="Roll Dice" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" Clicked="OnRoll" Style="{StaticResource RollBtn}"/>
-    </Grid>-->
 </ContentPage>
